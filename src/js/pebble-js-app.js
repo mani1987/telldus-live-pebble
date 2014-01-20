@@ -80,13 +80,13 @@ function getDevices() {
 }
 
 var dispatcher = {
-	publicKey: '',
-	privateKey: '',
+	publicKey: 'FEHUVEW84RAFR5SP22RABURUPHAFRUNU',
+	privateKey: 'ZUXEVEGA9USTAZEWRETHAQUBUR69U6EF',
 	requestTokenUrl: 'https://api.telldus.com/oauth/requestToken',
 	authorizeUrl: 'https://api.telldus.com/oauth/authorize',
 	accessTokenUrl: 'https://api.telldus.com/oauth/accessToken',
-	token: '',
-	tokenSecret: '',
+	token: 'ea612cc78d08fea809c78a15a882fd4e052dd7a16',
+	tokenSecret: '0c3a650e0c8c92a575ee0efec77e4f03',
 	init: function() {
 		this.token = window.localStorage.getItem('token');
 		this.tokenSecret = window.localStorage.getItem('tokenSecret');
