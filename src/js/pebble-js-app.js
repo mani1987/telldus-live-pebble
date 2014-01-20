@@ -1,5 +1,5 @@
 function httpPost(url, params, cb) {
-	var p = '';
+	var p = '1';
 	for (var param in params) {
 		if (p != '') {
 			p += "&";
@@ -95,25 +95,6 @@ var dispatcher = {
 		} else {
 			getDevices();
 		}
-	},
-	authenticate: function() {
-		this.token = '';  // Make sure these are empty
-		this.tokenSecret = '';
-		pebbleSendQueue.send({ "module": "auth", "action": "clear" });
-		var authorizeUrl = this.authorizeUrl;
-		this._doOAuth(this.requestTokenUrl, { oauth_callback: 'pebblejs:///close#' }, function(query) {
-			var params = parseQuery(query);
-			if ('oauth_token' in params && 'oauth_token_secret' in params) {
-				dispatcher.token = params['oauth_token'];
-				dispatcher.tokenSecret = params['oauth_token_secret'];
-				var url = authorizeUrl + '?oauth_token=' + params['oauth_token'];
-				pebbleSendQueue.send({ "module": "auth", "action": "request" });
-				Pebble.openURL(url);
-				return;
-			}
-			Pebble.showSimpleNotificationOnPebble("Error", "An error occured while trying to authorize Pebble with your Telldus Live! account");
-		});
-		return;
 	},
 	getAccessToken: function(cb) {
 		pebbleSendQueue.send({ "module": "auth", "action": "authenticating" });
